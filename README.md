@@ -11,6 +11,9 @@ This is a list of points you should check before posting your issue online. We'v
 ## <a name="basic-debugging"></a>Basic checks when running into any issue
 Thanks to an excellent answer by Ben Lessani (http://magento.stackexchange.com/a/429/50 < go upvote it) we have a basic checklist for any bug you run into
 
+###Logging
+Always check the Magento logs in `var/log/...`, also make sure it's turned on under `System > Configuration > Developer > Log Settings` and check the PHP and other related logs which are probably either located in your webshops root folder or in the `/var/logs/` folder on the server.
+
 ###Enable PHP Errors
 
 This is key to most issues. For security or other reasons, PHP error display could likely be disabled by default by your PHP configuration.
