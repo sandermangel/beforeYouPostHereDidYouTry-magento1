@@ -5,6 +5,7 @@ This is a list of points you should check before posting your issue online. We'v
 1. [Basic debugging steps](#basic-debugging)
 2. [Emails not sending](#emails-not-sending)
 3. [Product images not displaying](#productimages-not-displaying)
+4. [Cronjob not running](#cronjob-not-running)
 
 -----------------------
 
@@ -301,3 +302,14 @@ The guide above serves to get you on your way to identifying an error; not to fi
 1. Check file permissions on `media` folder (775 for directory and 664 for files)
 2. Check if the file owner is correct (could be `root:root`)
 3. Flush first image cache and then regular cache
+
+### <a name="cronjob-not-running"></a>Cronjob not running
+
+> One or more, or all cronjobs in Magento fail to run 
+
+1. Install [Aoe Scheduler](https://github.com/AOEpeople/Aoe_Scheduler/) to an overview of tasks
+2. Empty the `cron_schedule` table and ensure Magento rebuilds it
+3. Check config XMLs for syntax errors, a syntax error might cause cronjobs not to be picked up
+4. Check logs and Aoe Scheduler for errors thrown in cronjobs. If one fails, the ones afterwards will too.
+5. Call the cronjob method directly from a script (`[Namespace]_[Module]_Model_Cron::theMethod()`). Does it execute like expected?
+6. Check if the cronjob in Linux has any issues using this answer http://stackoverflow.com/a/2264897/387136
