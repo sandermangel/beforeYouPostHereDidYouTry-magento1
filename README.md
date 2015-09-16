@@ -1,7 +1,13 @@
 # beforeYouPostHereDidYouTry - Magento 1.x
 This is a list of points you should check before posting your issue online. We've run into these issues before and know what the standard issues might be so please take the time to work them through
 
-## Basic checks when running into any issue
+## Table of contents
+1. [Basic debugging steps](#basic-debugging)
+2. [Emails not sending](#emails-not-sending)
+
+-----------------------
+
+## <a name="basic-debugging"></a>Basic checks when running into any issue
 Thanks to an excellent answer by Ben Lessani (http://magento.stackexchange.com/a/429/50 < go upvote it) we have a basic checklist for any bug you run into
 
 ###Enable PHP Errors
@@ -270,7 +276,7 @@ The guide above serves to get you on your way to identifying an error; not to fi
 -----------------------
 ## Issue-specific solutions
 
-### Emails not sending
+### <a name="emails-not-sending"></a>Emails not sending
 
 > My (transactional emails are not being sent)
 
