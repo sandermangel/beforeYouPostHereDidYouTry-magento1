@@ -4,6 +4,7 @@ This is a list of points you should check before posting your issue online. We'v
 ## Table of contents
 1. [Basic debugging steps](#basic-debugging)
 2. [Emails not sending](#emails-not-sending)
+3. [Product images not displaying](#productimages-not-displaying)
 
 -----------------------
 
@@ -278,12 +279,20 @@ The guide above serves to get you on your way to identifying an error; not to fi
 
 ### <a name="emails-not-sending"></a>Emails not sending
 
-> My (transactional emails are not being sent)
+> My (transactional) emails are not being sent
 
 1. Are there any emails sent or just not the ones from the queue
 2. Did you check the queue table if the e-mails are added to the queue correctly?
 3. Do you use an module for sending emails?
-4. Are you sending email via SMTP or a sendgrid-like service and if so, is the SMTP or service working properly?
+4. Are you sending email via SMTP or Sendgrid etc and if so, is the SMTP or service working properly?
 5. Did you check if contact form email is sending, is it just the transactional emails?
 6. If sending via localhost, try the following from the commandline `$ endmail your@email.com < echo "Test email"`
 7. Did you check the mail log created by your server? Are the emails in there?
+
+### <a name="productimages-not-displaying"></a>Product images not displaying
+
+> Product images are not displaying on the front end 
+
+1. Check file permissions on `media` folder (775 for directory and 664 for files)
+2. Check if the file owner is correct (could be `root:root`)
+3. Flush first image cache and then regular cache
