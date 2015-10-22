@@ -315,3 +315,4 @@ The guide above serves to get you on your way to identifying an error; not to fi
 4. Check logs and Aoe Scheduler for errors thrown in cronjobs. If one fails, the ones afterwards will too.
 5. Call the cronjob method directly from a script (`[Namespace]_[Module]_Model_Cron::theMethod()`). Does it execute like expected?
 6. Check if the cronjob in Linux has any issues using this answer http://stackoverflow.com/a/2264897/387136
+7. For magento 1.8+ check if PHP function `shell_exec` is not disabled in php.ini
