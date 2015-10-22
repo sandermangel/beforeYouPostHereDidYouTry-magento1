@@ -292,8 +292,9 @@ The guide above serves to get you on your way to identifying an error; not to fi
 3. Do you use an module for sending emails?
 4. Are you sending email via SMTP or Sendgrid etc and if so, is the SMTP or service working properly?
 5. Did you check if contact form email is sending, is it just the transactional emails?
-6. If sending via localhost, try the following from the commandline `$ endmail your@email.com < echo "Test email"`
+6. If sending via localhost, try to create a test script with the following code `<?php mail('your@email.com', 'Test email', 'Test email'); ?>` in your magento root and execute it from browser.
 7. Did you check the mail log created by your server? Are the emails in there?
+8. Check "Spam" folder in your email account.
 
 ### <a name="productimages-not-displaying"></a>Product images not displaying
 
