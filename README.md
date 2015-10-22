@@ -116,8 +116,9 @@ Most importantly, we need to make sure that the FTP/SSH user is part of the Apac
 So before we start, lets make sure all the permissions are correct.
 
     chown -R sonassi:apache /home/path/public_html/
-    find /home/path/public_html/ -type d -exec chmod 775 {} \;
-    find /home/path/public_html/ -type f -exec chmod 664 {} \;
+    find /home/path/public_html/ -type d -exec chmod 750 {} \;
+    find /home/path/public_html/ -type f -exec chmod 640 {} \;
+    chmod -R g+w /home/path/public_html/{includes,media,var}
 
 ####Making the changes permanent
 #####ACLs and Sticky Bits
@@ -132,7 +133,7 @@ Start by enabling ACL support on the active partition, **please ensure your Kern
 
 Now ACLs are enabled, we can set the ACL rules and group sticky bits:
 
-    setfacl -d -m u::rwx,g::rwx,o::rx /home/path/public_html/
+    setfacl -R -d -m u::rwX,g::rwX,o::rX /home/path/public_html/
     chmod g+s /home/path/public_html/
 
 #####But I don’t have ACL support
