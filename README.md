@@ -116,8 +116,9 @@ Most importantly, we need to make sure that the FTP/SSH user is part of the Apac
 So before we start, lets make sure all the permissions are correct.
 
     chown -R sonassi:apache /home/path/public_html/
-    find /home/path/public_html/ -type d -exec chmod 775 {} \;
-    find /home/path/public_html/ -type f -exec chmod 664 {} \;
+    find /home/path/public_html/ -type d -exec chmod 750 {} \;
+    find /home/path/public_html/ -type f -exec chmod 640 {} \;
+    chmod -R g+w /home/path/public_html/{includes,media,var}
 
 ####Making the changes permanent
 #####ACLs and Sticky Bits
@@ -132,7 +133,7 @@ Start by enabling ACL support on the active partition, **please ensure your Kern
 
 Now ACLs are enabled, we can set the ACL rules and group sticky bits:
 
-    setfacl -d -m u::rwx,g::rwx,o::rx /home/path/public_html/
+    setfacl -R -d -m u::rwX,g::rwX,o::rX /home/path/public_html/
     chmod g+s /home/path/public_html/
 
 #####But I don’t have ACL support
@@ -292,8 +293,9 @@ The guide above serves to get you on your way to identifying an error; not to fi
 3. Do you use an module for sending emails?
 4. Are you sending email via SMTP or Sendgrid etc and if so, is the SMTP or service working properly?
 5. Did you check if contact form email is sending, is it just the transactional emails?
-6. If sending via localhost, try the following from the commandline `$ endmail your@email.com < echo "Test email"`
+6. If sending via localhost, try to create a test script with the following code `<?php mail('your@email.com', 'Test email', 'Test email'); ?>` in your magento root and execute it from browser.
 7. Did you check the mail log created by your server? Are the emails in there?
+8. Check "Spam" folder in your email account.
 
 ### <a name="productimages-not-displaying"></a>Product images not displaying
 
@@ -313,3 +315,4 @@ The guide above serves to get you on your way to identifying an error; not to fi
 4. Check logs and Aoe Scheduler for errors thrown in cronjobs. If one fails, the ones afterwards will too.
 5. Call the cronjob method directly from a script (`[Namespace]_[Module]_Model_Cron::theMethod()`). Does it execute like expected?
 6. Check if the cronjob in Linux has any issues using this answer http://stackoverflow.com/a/2264897/387136
+7. For magento 1.8+ check if PHP function `shell_exec` is not disabled in php.ini
