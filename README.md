@@ -6,6 +6,7 @@ This is a list of points you should check before posting your issue online. We'v
 2. [Emails not sending](#emails-not-sending)
 3. [Product images not displaying](#productimages-not-displaying)
 4. [Cronjob not running](#cronjob-not-running)
+5. [Applying patches without SSH](#applying-patches-without-ssh)
 
 -----------------------
 
