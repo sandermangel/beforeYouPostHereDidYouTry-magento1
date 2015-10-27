@@ -316,3 +316,16 @@ The guide above serves to get you on your way to identifying an error; not to fi
 5. Call the cronjob method directly from a script (`[Namespace]_[Module]_Model_Cron::theMethod()`). Does it execute like expected?
 6. Check if the cronjob in Linux has any issues using this answer http://stackoverflow.com/a/2264897/387136
 7. For magento 1.8+ check if PHP function `shell_exec` is not disabled in php.ini
+
+### <a name="applying-patches-without-ssh"></a>Applying patches without SSH
+1. Ask your hosting company to do it for you. If they're not able, try below
+2. upload the patch file to the root directory.
+2. create a new PHP file, call it whatever you like
+3. add below contents to the file
+4. call the file from the browser
+5. !IMPORTANT - remove both the PHP and Patch file from the server
+```php
+print("<pre>");
+shell_exec("/bin/bash [name of patch file]");
+print("</pre>");
+```
