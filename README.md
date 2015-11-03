@@ -319,6 +319,9 @@ The guide above serves to get you on your way to identifying an error; not to fi
 7. For magento 1.8+ check if PHP function `shell_exec` is not disabled in php.ini
 
 ### <a name="applying-patches-without-ssh"></a>Applying patches without SSH
+1. Do it locally and then deploy the changed files to the server (prefered with git, capistrano or something alike)
+
+#### Updating files on a live environment is a bad idea, but if you don't have an alternative:
 1. Ask your hosting company to do it for you. If they're not able, try below
 2. upload the patch file to the root directory.
 2. create a new PHP file, call it whatever you like
