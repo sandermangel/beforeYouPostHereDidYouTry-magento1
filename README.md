@@ -7,6 +7,7 @@ This is a list of points you should check before posting your issue online. We'v
 3. [Product images not displaying](#productimages-not-displaying)
 4. [Cronjob not running](#cronjob-not-running)
 5. [Applying patches without SSH](#applying-patches-without-ssh)
+5. [Form field validation](#form-field-validation)
 
 -----------------------
 
@@ -332,4 +333,90 @@ The guide above serves to get you on your way to identifying an error; not to fi
 print("<pre>");
 shell_exec("/bin/bash [name of patch file]");
 print("</pre>");
+```
+
+### <a name="form-field-validation"></a>Form field validation
+Magento offers a full Javascript validation library out of the box. These validations can be used by adding a class to an input field.
+
+Below a validation for E-mail addresses.
+```html
+<form name="some-form" id="some-form" action="" method="post">
+[...]
+    <label for="samefield"><?php echo $this->__('Some field') ?> <span class="required">*</span></label><br />
+    <input id="samefield" name="samefield" class="input-text required-entry validate-email" />
+[...]
+</form>
+```
+
+You can find all available validations in `js/prototype/validation.js`. In Mage EE 1.14.2 / 1.9.2.2 the following are available
+> validate-no-html-tags
+validate-select
+required-entry
+validate-number
+validate-number-range
+validate-digits
+validate-digits-range
+validate-alpha
+validate-code
+validate-alphanum
+validate-alphanum-with-spaces
+validate-street
+validate-phoneStrict
+validate-phoneLax
+validate-fax
+validate-date
+validate-date-range
+validate-email
+validate-emailSender
+validate-password
+validate-admin-password
+validate-cpassword
+validate-both-passwords
+validate-url
+validate-clean-url
+validate-identifier
+validate-xml-identifier
+validate-ssn
+validate-zip
+validate-zip-international
+validate-date-au
+validate-currency-dollar
+validate-one-required
+validate-one-required-by-name
+validate-not-negative-number
+validate-zero-or-greater
+validate-greater-than-zero
+validate-state
+validate-new-password
+validate-cc-number
+validate-cc-type
+validate-cc-type-select
+validate-cc-exp
+validate-cc-cvn
+validate-ajax
+validate-data
+validate-css-length
+validate-length
+validate-percents
+required-file
+> validate-cc-ukss
+
+In case you need some custom validation that will require some javascript. In the template file add the following after the form
+
+```html
+<form name="some-form" id="some-form" action="" method="post">
+[...]
+    <label for="samefield"><?php echo $this->__('Some field') ?> <span class="required">*</span></label><br />
+    <input id="samefield" name="samefield" class="input-text required-entry validate-custom-value" />
+[...]
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    var form = new VarienForm('some-form', true);
+    Validation.add('validate-custom-value','This field value must be "foo"',function(v){
+        return (v == 'foo') ? true : false ;
+    });
+//]]>   
+</script>
 ```
